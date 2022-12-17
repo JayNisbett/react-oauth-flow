@@ -6,11 +6,11 @@ import logo from './logo.svg';
 import './App.css';
 
 const { Sender, Receiver } = createOauthFlow({
-  authorizeUrl: 'https://www.dropbox.com/oauth2/authorize',
-  tokenUrl: 'https://api.dropboxapi.com/oauth2/token',
-  clientId: process.env.REACT_APP_DB_KEY,
-  clientSecret: process.env.REACT_APP_DB_SECRET,
-  redirectUri: 'http://localhost:3000/auth/dropbox',
+  authorizeUrl: 'https://marketplace.gohighlevel.com/oauth/chooselocation',
+  tokenUrl: 'https://api.msgsndr.com/oauth/token',
+  clientId: process.env.REACT_APP_CLIENT_ID,
+  clientSecret: process.env.REACT_APP_CLIENT_SECRET,
+  redirectUri: 'http://localhost:3000/auth/switchboard',
 });
 
 class App extends Component {
@@ -34,7 +34,7 @@ class App extends Component {
         <div className="App">
           <header className="App-header">
             <img src={logo} className="App-logo" alt="logo" />
-            <h1 className="App-title">Welcome to React</h1>
+            <h1 className="App-title">Welcome to Switchboard</h1>
           </header>
 
           <Route
@@ -44,7 +44,7 @@ class App extends Component {
               <div>
                 <Sender
                   state={{ to: '/auth/success' }}
-                  render={({ url }) => <a href={url}>Connect to Dropbox</a>}
+                  render={({ url }) => <a href={url}>Connect to Switchboard</a>}
                 />
               </div>
             )}
@@ -52,7 +52,7 @@ class App extends Component {
 
           <Route
             exact
-            path="/auth/dropbox"
+            path="/auth/switchboard"
             render={({ location }) => (
               <Receiver
                 location={location}
@@ -76,7 +76,7 @@ class App extends Component {
           <Route
             exact
             path="/auth/success"
-            render={() => <div>Successfully authorized Dropbox!</div>}
+            render={() => <div>Successfully authorized Switchboard!</div>}
           />
         </div>
       </BrowserRouter>
